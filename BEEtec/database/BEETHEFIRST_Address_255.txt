@@ -1,0 +1,5 @@
+BEETHEFIRST, Serial number: 1233456789
+Change the serial number from 1233456789 to 1234567890
+Initial temps: [{'Nozzle Temp': 173.6989}]
+Elapsed time heating: 0 minutes 48.74 sec
+Final temps: {}

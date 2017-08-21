@@ -1,0 +1,942 @@
+#:import lv kivy.uix.listview
+#:import la kivy.adapters.listadapter
+#:import sla kivy.adapters.simplelistadapter
+#:import label kivy.uix.label.Label
+#:import textInput kivy.uix.textinput
+#:import progressBar kivy.uix.progressbar
+
+<label>:
+    color: 0,0,0,1
+    font_size: 25
+
+ShowcaseScreen:
+    id: ola
+    name: 'ScreenManager'
+    fullscreen: True
+    ScreenManager:
+        id: sm
+
+        Screen:
+            name: 'screen1'
+            canvas.before:
+                Rectangle:
+                    size: self.size
+            RelativeLayout:
+                Image:
+                    source: 'data/bee_burned.png'
+                    pos_hint: {'center_x': 0.1, 'center_y': 0.88}
+                    size_hint: 0.2,0.21
+                Label:
+                    id: printerList
+                    bold: True
+                    font_size: 35
+                    text: 'Printers list'
+                    color: 0,0,0,1
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.85}
+                GridLayout:
+                    id: grid
+                    spacing: '5dp'
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+                    size_hint: 0.9,0.7
+                    cols: 3
+                    Button:
+                        id: firstPrinter
+                        color: 1,1,1,1
+                        width: 100
+                        opacity: 0.8
+                        text: 'Empty'
+                        font_size: 20
+                        text_size: cm(5), cm(2)
+                        valign: 'middle'
+                        on_press: app.selectButton1 = True
+                        on_release: app.chooseScreen(self.text)
+                        halign: 'center'
+                    Button:
+                        id: secondPrinter
+                        color: 1,1,1,1
+                        width: 100
+                        font_size:20
+                        text: 'Empty'
+                        opacity: 0.8
+                        text_size: cm(5), cm(2)
+                        valign: 'middle'
+                        halign: 'center'
+                        on_press: app.selectButton2 = True
+                        on_release: app.chooseScreen(self.text)
+                    Button:
+                        id: thirdPrinter
+                        color: 1,1,1,1
+                        width: 100
+                        font_size:20
+                        text: 'Empty'
+                        opacity: 0.8
+                        text_size: cm(5), cm(2)
+                        valign: 'middle'
+                        halign: 'center'
+                        on_press: app.selectButton3 = True
+                        on_release: app.chooseScreen(self.text)
+                    Button:
+                        id: fourPrinter
+                        color: 1,1,1,1
+                        width:100
+                        font_size:20
+                        text: 'Empty'
+                        opacity: 0.8
+                        text_size: cm(5), cm(2)
+                        valign: 'middle'
+                        halign: 'center'
+                        on_press: app.selectButton4 = True
+                        on_release: app.chooseScreen(self.text)
+        Screen:
+            name: 'screen16'
+            canvas.before:
+                Rectangle:
+                    size: self.size
+            RelativeLayout:
+                id: relativeLayout
+                Image:
+                    source: 'data/bee_burned.png'
+                    pos_hint: {'center_x': 0.1, 'center_y': 0.9}
+                    size_hint: 0.2,0.21
+                Button:
+                    id: search_new_pic
+                    color: 1,1,1,1
+                    size_hint: None, None
+                    font_size: 35
+                    size: '430dp', '58dp'
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.75}
+                    text: 'Search for new Encoder'
+                    on_press: app.isConnEnc()
+                Image:
+                    source: 'data/connectPic.png'
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+                    size_hint: 0.3,0.3
+                Label:
+                    id: connecting
+                    font_size: 20
+                    color: 0,0,0,1
+                    text: 'INFO: Try connecting to the last encoder linked. This may take a few seconds!'
+                    halign: 'center'
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.73}
+                    text_size: cm(13), cm(4)
+                Button:
+                    size_hint: None, None
+                    color: 1,1,1,1
+                    font_size: 35
+                    size: '300dp', '70dp'
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.15}
+                    text: 'Cancel'
+                    on_press: app.closeConnection()
+                    on_release: sm.current = "screen1"
+        Screen:
+            name: 'screen3'
+            canvas.before:
+                Rectangle:
+                    size: self.size
+            RelativeLayout:
+                Image:
+                    source: 'data/bee_burned.png'
+                    pos_hint: {'center_x': 0.1, 'center_y': 0.88}
+                    size_hint: 0.2,0.21
+                GridLayout:
+                    size_hint: .6,.58
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.48}
+                    cols: 3
+                    Button:
+                        text: '0'
+                        font_size: 22
+                        color: 1,1,1,1
+                        on_press: app.putNum(self.text)
+                    Button:
+                        text: '1'
+                        font_size: 22
+                        color: 1,1,1,1
+                        on_press: app.putNum(self.text)
+                    Button:
+                        text: '2'
+                        font_size: 22
+                        color: 1,1,1,1
+                        on_press: app.putNum(self.text)
+                    Button:
+                        text: '3'
+                        font_size: 22
+                        color: 1,1,1,1
+                        on_press: app.putNum(self.text)
+                    Button:
+                        text: '4'
+                        font_size: 22
+                        color: 1,1,1,1
+                        on_press: app.putNum(self.text)
+                    Button:
+                        text: '5'
+                        font_size: 22
+                        color: 1,1,1,1
+                        on_press: app.putNum(self.text)
+                    Button:
+                        text: '6'
+                        font_size: 22
+                        color: 1,1,1,1
+                        on_press: app.putNum(self.text)
+                    Button:
+                        text: '7'
+                        font_size: 22
+                        color: 1,1,1,1
+                        on_press: app.putNum(self.text)
+                    Button:
+                        text: '8'
+                        font_size: 22
+                        color: 1,1,1,1
+                        on_press: app.putNum(self.text)
+                    Button:
+                        text: '9'
+                        font_size: 22
+                        color: 1,1,1,1
+                        on_press: app.putNum(self.text)
+                    Button:
+                        text: '<'
+                        font_size: 24
+                        color: 1,1,1,1
+                        on_press: app.eraseNum()
+                    Button:
+                        text: 'Reset'
+                        font_size: 22
+                        color: 1,1,1,1
+                        on_press: app.resetNum()
+                Label:
+                    bold: True
+                    font_size: 26
+                    text: 'Serial Number:'
+                    color: 0,0,0,1
+                    pos_hint: {'center_x': 0.32, 'center_y': 0.85}
+
+                TextInput:
+                    id: textInput
+                    text: ''
+                    font_size: 22
+                    size_hint: .4,.1
+                    pos_hint: {'center_x': 0.67, 'center_y': 0.85}
+                Button:
+                    id: goNextStep
+                    color: 1,1,1,1
+                    font_size: 30
+                    size_hint: None, None
+                    size: '228dp', '80dp'
+                    pos_hint: {'center_x': 0.36, 'center_y': 0.105}
+                    text: 'Go to next step'
+                    disabled: True
+                    on_press: app.next2steps()
+                    on_release: sm.current = 'screen16' if app.disconnected == False else 'screen1'
+                Button:
+                    size_hint: None, None
+                    color: 1,1,1,1
+                    font_size: 30
+                    size: '200dp', '80dp'
+                    pos_hint: {'center_x': 0.66, 'center_y': 0.105}
+                    text: 'Cancel'
+                    on_press: app.closeConnection()
+                    on_release: sm.current = 'screen1'
+
+        Screen:
+            name: 'screen4'
+            canvas.before:
+                Rectangle:
+                    size: self.size
+            RelativeLayout:
+                Image:
+                    source: 'data/bee_burned.png'
+                    pos_hint: {'center_x': 0.1, 'center_y': 0.88}
+                    size_hint: 0.2,0.21
+                Label:
+                    font_size: 30
+                    text: 'Select color code for filament:'
+                    color: 0,0,0,1
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.845}
+                BoxLayout:
+                    size_hint: .3,.2
+                    pos_hint: {'center_x': 0.26, 'center_y': 0.63}
+                    cols: 3
+                    Button:
+                        text: '+'
+                        font_size: 28
+                        color: 1,1,1,1
+                        on_press: app.incNum('one')
+                    Button:
+                        text: '+'
+                        font_size: 28
+                        color: 1,1,1,1
+                        on_press: app.incNum('two')
+                    Button:
+                        text: '+'
+                        font_size: 28
+                        color: 1,1,1,1
+                        on_press: app.incNum('three')
+                BoxLayout:
+                    size_hint: .3,.2
+                    pos_hint: {'center_x': 0.26, 'center_y': 0.28}
+                    cols: 3
+                    Button:
+                        text: '-'
+                        font_size: 28
+                        color: 1,1,1,1
+                        on_press: app.decNum('one')
+                    Button:
+                        text: '-'
+                        font_size: 28
+                        color: 1,1,1,1
+                        on_press: app.decNum('two')
+                    Button:
+                        text: '-'
+                        font_size: 28
+                        color: 1,1,1,1
+                        on_press: app.decNum('three')
+                Label:
+                    font_size: 28
+                    text: 'A'
+                    color: 0,0,0,1
+                    pos_hint: {'center_x': 0.08, 'center_y': 0.45}
+                Label:
+                    id: label_one
+                    font_size: 28
+                    text: '0'
+                    color: 0,0,0,1
+                    pos_hint: {'center_x': 0.16, 'center_y': 0.45}
+                Label:
+                    id: label_two
+                    font_size: 28
+                    text: '0'
+                    color: 0,0,0,1
+                    pos_hint: {'center_x': 0.26, 'center_y': 0.45}
+                Label:
+                    id: label_three
+                    font_size: 28
+                    text: '0'
+                    color: 0,0,0,1
+                    pos_hint: {'center_x': 0.36, 'center_y': 0.45}
+                Label:
+                    id: name_filament
+                    font_size: 30
+                    text: 'Wrong Number...'
+                    color: 0,0,0,1
+                    pos_hint: {'center_x': 0.735, 'center_y': 0.45}
+                Button:
+                    id: heatingNozzle
+                    color: 1,1,1,1
+                    font_size:28
+                    size_hint: None, None
+                    size: '200dp', '80dp'
+                    pos_hint: {'center_x': 0.8, 'center_y': 0.1}
+                    text: 'Heating noozle'
+                    disabled: True
+                    on_press: app.selectFilament()
+                    on_release: sm.current = 'screen5' if app.disconnected == False else 'screen1'
+                FloatLayout:
+                    id: color_filament
+                    size_hint: .1,.2
+                    pos_hint: {'center_x': 0.48, 'center_y': 0.45}
+                    canvas.before:
+                        Color:
+                            rgba: 0, 0, 0, 1
+                        Rectangle:
+                            # self here refers to the widget i.e FloatLayout
+                            pos: self.pos
+                            size: self.size
+                Button:
+                    size_hint: None, None
+                    color: 1,1,1,1
+                    font_size: 28
+                    size: '150dp', '80dp'
+                    pos_hint: {'center_x': 0.55, 'center_y': 0.1}
+                    text: 'Cancel'
+                    on_press: app.closeConnection()
+                    on_release: sm.current = 'screen1'
+
+        Screen:
+            name: 'screen5'
+            canvas.before:
+                Rectangle:
+                    size: self.size
+            RelativeLayout:
+                Image:
+                    source: 'data/bee_burned.png'
+                    pos_hint: {'center_x': 0.1, 'center_y': 0.88}
+                    size_hint: 0.2,0.21
+                Label:
+                    text: 'Heating: {}%'.format(int((pb.value * 100)))
+                    color: 0,0,0,1
+                    font_size: 35
+                    size_hint_y: None
+                    height: '48dp'
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.85}
+                ProgressBar:
+                    id: pb
+                    size_hint: 0.8, 1
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.73}
+                    value: 0.0
+                    max: 1.0
+                Button:
+                    size_hint: None, None
+                    color: 1,1,1,1
+                    font_size: 25
+                    size: '250dp', '80dp'
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.58}
+                    text: 'Go to initial page'
+                    on_press: app.goToInit()
+                Label:
+                    font_size: 22
+                    color: 0,0,0,1
+                    text:
+                        ('Extruder nozzle has to be heated whenever you change the filament. When it reaches the ideal temperature you may move to the next stage.')
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.43}
+                    text_size: cm(17), cm(4)
+                Button:
+                    id: load_unload
+                    color: 1,1,1,1
+                    size_hint: None, None
+                    size: '200dp', '80dp'
+                    font_size: 25
+                    pos_hint: {'center_x': 0.67, 'center_y': 0.1}
+                    text: 'Load/Unload'
+                    disabled: True
+                    on_press: app.resetValues()
+                    on_release: sm.current= 'screen6'
+                Button:
+                    size_hint: None, None
+                    color: 1,1,1,1
+                    font_size: 25
+                    size: '200dp', '80dp'
+                    pos_hint: {'center_x': 0.33, 'center_y': 0.1}
+                    text: 'Cancel'
+                    on_press: app.closeConnection()
+                    on_release: sm.current = 'screen1'
+        Screen:
+            name: 'screen6'
+            canvas.before:
+                Rectangle:
+                    size: self.size
+            RelativeLayout:
+                Image:
+                    source: 'data/bee_burned.png'
+                    pos_hint: {'center_x': 0.1, 'center_y': 0.88}
+                    size_hint: 0.2,0.2
+                Label:
+                    font_size: 32
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.9}
+                    text: 'Maintenance'
+                Button:
+                    id: load
+                    color: 1,1,1,1
+                    font_size: 26
+                    size_hint: None, None
+                    size: '200dp', '80dp'
+                    pos_hint: {'center_x': 0.27, 'center_y': 0.7}
+                    text: 'Load'
+                    on_press: app.load()
+                Button:
+                    id: unload
+                    color: 1,1,1,1
+                    font_size: 26
+                    size_hint: None, None
+                    size: '200dp', '80dp'
+                    pos_hint: {'center_x': 0.73, 'center_y': 0.7}
+                    text: 'Unload'
+                    on_press: app.unload()
+                Image:
+                    source: 'data/Load.png'
+                    pos_hint: {'center_x': 0.27, 'center_y': 0.4}
+                    size_hint: 0.38,0.38
+                Image:
+                    source: 'data/Unload.png'
+                    pos_hint: {'center_x': 0.73, 'center_y': 0.4}
+                    size_hint: 0.38,0.38
+                Button:
+                    color: 1,1,1,1
+                    font_size: 26
+                    size_hint: None, None
+                    size: '200dp', '75dp'
+                    pos_hint: {'center_x': 0.73, 'center_y': 0.1}
+                    text: 'Start Calibration'
+                    on_press: app.startCalibration()
+                    on_release: sm.current = "screen7"
+                Button:
+                    size_hint: None, None
+                    color: 1,1,1,1
+                    font_size: 26
+                    size: '200dp', '75dp'
+                    pos_hint: {'center_x': 0.27, 'center_y': 0.1}
+                    text: 'Cancel'
+                    on_press: app.closeConnection()
+                    on_release: sm.current = 'screen1'
+        Screen:
+            name: 'screen7'
+            canvas.before:
+                Rectangle:
+                    size: self.size
+            RelativeLayout:
+                Image:
+                    source: 'data/bee_burned.png'
+                    pos_hint: {'center_x': 0.1, 'center_y': 0.88}
+                    size_hint: 0.2,0.21
+                Label:
+                    font_size: 32
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.91}
+                    text: 'Calibration Wizard'
+                Button:
+                    size_hint: None, None
+                    color: 1,1,1,1
+                    font_size: 25
+                    size: '180dp', '90dp'
+                    pos_hint: {'center_x': 0.35, 'center_y': 0.76}
+                    text: 'Up 0.05 mm'
+                    on_press: app.up005()
+                Button:
+                    size_hint: None, None
+                    color: 1,1,1,1
+                    font_size: 25
+                    size: '180dp', '90dp'
+                    pos_hint: {'center_x': 0.35, 'center_y': 0.51}
+                    text: 'Up 0.5 mm'
+                    on_press: app.up05()
+                Button:
+                    size_hint: None, None
+                    color: 1,1,1,1
+                    font_size: 25
+                    size: '180dp', '90dp'
+                    pos_hint: {'center_x': 0.7, 'center_y': 0.51}
+                    text: 'Down 0.5 mm'
+                    on_press: app.down05()
+                    on_release: sm.current = "screen7"
+                Button:
+                    size_hint: None, None
+                    color: 1,1,1,1
+                    size: '180dp', '90dp'
+                    font_size: 25
+                    pos_hint: {'center_x': 0.7, 'center_y': 0.76}
+                    text: 'Down 0.05 mm'
+                    on_press: app.down005()
+                    on_release: sm.current = "screen7"
+                Label:
+                    font_size: 24
+                    color: 0,0,0,1
+                    text:
+                        ('Put a piece of paper on the table beneath the nozzle. Fine tune the table up or down.')
+                    halign: 'center'
+                    pos_hint: {'center_x': 0.52, 'center_y': 0.32}
+                    text_size: cm(15), cm(2)
+                Button:
+                    size_hint: None, None
+                    color: 1,1,1,1
+                    font_size: 24
+                    size: '300dp', '80dp'
+                    pos_hint: {'center_x': 0.7, 'center_y': 0.1}
+                    text: 'Go to next calibration point'
+                    on_press: app.goToNextPointCalibration()
+                    on_release: sm.current = "screen8"
+                Button:
+                    size_hint: None, None
+                    color: 1,1,1,1
+                    font_size: 24
+                    size: '150dp', '80dp'
+                    pos_hint: {'center_x': 0.3, 'center_y': 0.1}
+                    text: 'Cancel'
+                    on_press: app.closeConnection()
+                    on_release: sm.current = 'screen1'
+
+        Screen:
+            name: 'screen8'
+            canvas.before:
+                Rectangle:
+                    size: self.size
+            RelativeLayout:
+                Image:
+                    source: 'data/bee_burned.png'
+                    pos_hint: {'center_x': 0.1, 'center_y': 0.88}
+                    size_hint: 0.2,0.21
+                Label:
+                    font_size: 32
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.85}
+                    text: 'Calibration Wizard'
+                Image:
+                    source: 'data/Calibrate.png'
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                    size_hint: 0.63,0.63
+                Button:
+                    color: 1,1,1,1
+                    size_hint: None, None
+                    font_size: 24
+                    size: '300dp', '70dp'
+                    pos_hint: {'center_x': 0.7, 'center_y': 0.1}
+                    text: 'Go to final calibration point'
+                    on_press: app.goToNextPointCalibration()
+                    on_release: sm.current = "screen9"
+                Button:
+                    color: 1,1,1,1
+                    size_hint: None, None
+                    font_size: 24
+                    size: '150dp', '70dp'
+                    pos_hint: {'center_x': 0.25, 'center_y': 0.1}
+                    text: 'Cancel'
+                    on_press: app.closeConnection()
+                    on_release: sm.current = 'screen1'
+
+        Screen:
+            name: 'screen9'
+            canvas.before:
+                Rectangle:
+                    size: self.size
+            RelativeLayout:
+                Image:
+                    source: 'data/bee_burned.png'
+                    pos_hint: {'center_x': 0.1, 'center_y': 0.88}
+                    size_hint: 0.2,0.2
+                Label:
+                    font_size: 32
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.9}
+                    text: 'Maintenance'
+                Button:
+                    color: 1,1,1,1
+                    size_hint: None, None
+                    font_size: 24
+                    size: '200dp', '70dp'
+                    pos_hint: {'center_x': 0.25, 'center_y': 0.68}
+                    text: 'Test Calibration'
+                    on_press: app.testCalibration()
+                    on_release: sm.current = "screen10"
+                Image:
+                    source: 'data/calibrationTest.png'
+                    pos_hint: {'center_x': 0.28, 'center_y': 0.4}
+                    size_hint: 0.5,0.5
+                Button:
+                    color: 1,1,1,1
+                    size_hint: None, None
+                    font_size: 24
+                    size: '200dp', '70dp'
+                    pos_hint: {'center_x': 0.75, 'center_y': 0.68}
+                    text: 'Print test'
+                    on_press: app.printFile()
+                    on_release: sm.current = "screen1"
+                Image:
+                    source: 'data/print.png'
+                    pos_hint: {'center_x': 0.75, 'center_y': 0.4}
+                    size_hint: 0.5,0.5
+                Button:
+                    color: 1,1,1,1
+                    size_hint: None, None
+                    size: '150dp', '70dp'
+                    font_size: 24
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+                    text: 'Cancel'
+                    on_press: app.closeConnection()
+                    on_release: sm.current = 'screen1'
+        Screen:
+            name: 'screen10'
+            canvas.before:
+                Rectangle:
+                    size: self.size
+            RelativeLayout:
+                Image:
+                    source: 'data/bee_burned.png'
+                    pos_hint: {'center_x': 0.1, 'center_y': 0.88}
+                    size_hint: 0.2,0.2
+                Label:
+                    text: 'Progress: {}%'.format(int((calibtest.value)))
+                    size_hint_y: None
+                    font_size: 29
+                    height: '48dp'
+                    color: 0,0,0,1
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.85}
+                ProgressBar:
+                    id: calibtest
+                    size_hint: 0.8, 1
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.73}
+                    value: 0
+                    max: 100
+                Label:
+                    id: questionCal
+                    font_size: 24
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.58}
+                    color: 0,0,0,1
+                    opacity: 0
+                    text: 'Calibration test ok?'
+                Image:
+                    id: smile
+                    opacity: 0
+                    source: 'data/smile.png'
+                    pos_hint: {'center_x': 0.28, 'center_y': 0.18}
+                    size_hint: 0.3,0.3
+                Button:
+                    color: 1,1,1,1
+                    id: calTestOk
+                    font_size: 24
+                    size_hint: None, None
+                    size: '150dp', '70dp'
+                    opacity: 0
+                    disabled: True
+                    pos_hint: {'center_x': 0.28, 'center_y': 0.4}
+                    text: 'YES'
+                    #on_press: app.testCalibration()
+                    on_release: sm.current = "screen12"
+                Image:
+                    id: sad
+                    source: 'data/sad.png'
+                    opacity: 0
+                    pos_hint: {'center_x': 0.68, 'center_y': 0.18}
+                    size_hint: 0.3,0.3
+                Button:
+                    color: 1,1,1,1
+                    id: calTestNotOk
+                    font_size: 24
+                    size_hint: None, None
+                    size: '150dp', '70dp'
+                    opacity: 0
+                    disabled: True
+                    pos_hint: {'center_x': 0.68, 'center_y': 0.4}
+                    text: 'NO'
+                    on_release: sm.current = "screen11"
+        Screen:
+            name: 'screen11'
+            canvas.before:
+                Rectangle:
+                    size: self.size
+            RelativeLayout:
+                Image:
+                    source: 'data/bee_burned.png'
+                    pos_hint: {'center_x': 0.1, 'center_y': 0.88}
+                    size_hint: 0.2,0.2
+                Label:
+                    bold: True
+                    font_size: 28
+                    color: 0,0,0,1
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.85}
+                    text: 'Bad table or bad calibration?'
+                Image:
+                    source: 'data/rightBolt.png'
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.54}
+                    size_hint: 0.55,0.55
+                Button:
+                    color: 1,1,1,1
+                    size_hint: None, None
+                    size: '220dp', '70dp'
+                    font_size: 26
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.11}
+                    text: 'restart calibration.'
+                    on_press: app.startCalibration()
+                    on_release: sm.current = "screen7"
+                Label:
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.22}
+                    color: 0,0,0,1
+                    font_size: 26
+                    text: 'If bad table before restart calibration change or adjust it and'
+        Screen:
+            name: 'screen12'
+            canvas.before:
+                Rectangle:
+                    size: self.size
+            RelativeLayout:
+                Image:
+                    source: 'data/bee_burned.png'
+                    pos_hint: {'center_x': 0.1, 'center_y': 0.88}
+                    size_hint: 0.2,0.2
+                Label:
+                    font_size: 30
+                    color: 0,0,0,1
+                    text:
+                        ('Print test')
+                    halign: 'center'
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.9}
+                    text_size: cm(9.2), cm(2.5)
+                Image:
+                    source: 'data/print.png'
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                    size_hint: 0.6,0.6
+                Button:
+                    color: 1,1,1,1
+                    size_hint: None, None
+                    size: '200dp', '70dp'
+                    font_size: 24
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.16}
+                    text: 'Print test'
+                    on_press: app.printFile()
+                    on_release: sm.current = "screen1"
+        Screen:
+            name: 'screen13'
+            canvas.before:
+                Rectangle:
+                    size: self.size
+            RelativeLayout:
+            Image:
+                source: 'data/bee_burned.png'
+                pos_hint: {'center_x': 0.1, 'center_y': 0.88}
+                size_hint: 0.2,0.2
+            Label:
+                id: printProgress
+                text: 'Progress: {}% '.format(int((printTest.value)))
+                color: 0,0,0,1
+                size_hint_y: None
+                height: '48dp'
+                pos_hint: {'center_x': 0.34, 'center_y': 0.85}
+                font_size: 29
+            Label:
+                id: timeRemain
+                text: '(Unknown time remaning...)'
+                color: 0,0,0,1
+                size_hint_y: None
+                height: '48dp'
+                pos_hint: {'center_x': 0.684, 'center_y': 0.85}
+                font_size: 29
+            ProgressBar:
+                id: printTest
+                size_hint: 0.8, 1
+                pos_hint: {'center_x': 0.5, 'center_y': 0.73}
+                value: 0
+                max: 100
+            Image:
+                source: 'data/printing.png'
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                size_hint: 0.5,0.5
+            Button:
+                color: 1,1,1,1
+                size_hint: None, None
+                size: '100dp', '75dp'
+                font_size: 25
+                pos_hint: {'center_x': 0.87, 'center_y': 0.2}
+                text: '< Back'
+                on_press: app.resetSlicePressed()
+                on_release: sm.current = "screen1"
+            Button:
+                color: 1,1,1,1
+                id: cancelPrint
+                size_hint: None, None
+                size: '200dp', '75dp'
+                font_size: 25
+                pos_hint: {'center_x': 0.17, 'center_y': 0.2}
+                text: 'Cancel Print'
+                disabled: False
+                on_press: app.cancelPrint = True
+                on_release:
+            Button:
+                color: 1,1,1,1
+                id: LUWhiteFilament
+                size_hint: None, None
+                disabled: True
+                font_size: 25
+                size: '200dp', '75dp'
+                pos_hint: {'center_x': 0.48, 'center_y': 0.2}
+                text: 'Load/Unload'
+                on_release: sm.current = 'screen14'
+            Button:
+                color: 1,1,1,1
+                size_hint: None, None
+                size: '100dp', '75dp'
+                font_size: 25
+                pos_hint: {'center_x': 0.715, 'center_y': 0.2}
+                text: 'Info'
+                on_press: app.getInfo()
+                on_release: sm.current = 'screen15'
+        Screen:
+            name: 'screen14'
+            canvas.before:
+                Rectangle:
+                    size: self.size
+            RelativeLayout:
+                Image:
+                    source: 'data/bee_burned.png'
+                    pos_hint: {'center_x': 0.1, 'center_y': 0.88}
+                    size_hint: 0.2,0.21
+                Label:
+                    font_size: 28
+                    text: 'Load/Unload with Transparent Fil'
+                    pos_hint: {'center_x': 0.52, 'center_y': 0.9}
+                Button:
+                    color: 1,1,1,1
+                    size_hint: None, None
+                    size: '200dp', '70dp'
+                    font_size: 25
+                    pos_hint: {'center_x': 0.27, 'center_y': 0.7}
+                    text: 'Load'
+                    on_press: app.loadFilamentTrans()
+                Button:
+                    color: 1,1,1,1
+                    size_hint: None, None
+                    size: '200dp', '70dp'
+                    font_size: 25
+                    pos_hint: {'center_x': 0.73, 'center_y': 0.7}
+                    text: 'Unload'
+                    on_press: app.unloadFilamentTrans()
+                Image:
+                    source: 'data/Load.png'
+                    pos_hint: {'center_x': 0.27, 'center_y': 0.4}
+                    size_hint: 0.4,0.4
+                Image:
+                    source: 'data/Unload.png'
+                    pos_hint: {'center_x': 0.73, 'center_y': 0.4}
+                    size_hint: 0.4,0.4
+                Button:
+                    color: 1,1,1,1
+                    size_hint: None, None
+                    size: '200dp', '70dp'
+                    font_size: 25
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+                    text: 'Close connection'
+                    on_press: app.closeCon()
+                    on_release: sm.current = 'screen1'
+        Screen:
+            name: 'screen15'
+            canvas.before:
+                Rectangle:
+                    size: self.size
+            RelativeLayout:
+                Image:
+                    source: 'data/bee_burned.png'
+                    pos_hint: {'center_x': 0.1, 'center_y': 0.88}
+                    size_hint: 0.2,0.21
+                Label:
+                    bold: True
+                    font_size: 28
+                    text: 'Info about printer'
+                    color: 0,0,0,1
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.85}
+                ListView:
+                    id: initialDateTime
+                    font_size: 25
+                    size_hint: 0.33,.55
+                    pos_hint: {'center_x': 0.15, 'center_y': 0.48}
+                    adapter:
+                        sla.SimpleListAdapter(
+                        data=['Initial Date'],
+                        cls=label)
+                ListView:
+                    id: timeHeating
+                    font_size: 25
+                    size_hint: 0.33,.55
+                    pos_hint: {'center_x': 0.415, 'center_y': 0.48}
+                    adapter:
+                        sla.SimpleListAdapter(
+                        data=['Heat time'],
+                        cls=label)
+                ListView:
+                    id: timePrinting
+                    font_size: 25
+                    size_hint: 0.33,.55
+                    pos_hint: {'center_x': 0.66, 'center_y': 0.48}
+                    adapter:
+                        sla.SimpleListAdapter(
+                        data=['Print time'],
+                        cls=label)
+                ListView:
+                    id: spentFilament
+                    font_size: 25
+                    size_hint: 0.33,.55
+                    pos_hint: {'center_x': 0.88, 'center_y': 0.48}
+                    adapter:
+                        sla.SimpleListAdapter(
+                        data=['Spent fil'],
+                        cls=label)
+                Button:
+                    color: 1,1,1,1
+                    size_hint: None, None
+                    size: '200dp', '70dp'
+                    font_size: 25
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+                    text: '< back'
+                    on_press: app.resetListViews()
+                    on_release: sm.current = 'screen13'
